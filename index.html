@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Peehu Mehta</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FBF9F3;
+    --paper-dim:#F3EFE4;
+    --ink:#1E2A32;
+    --ink-soft:#4A5760;
+    --gold:#A9821F;
+    --gold-line:#C9A227;
+    --sage:#4B6455;
+    --rule:#DAD3C1;
+  }
+
+  *{box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'IBM Plex Sans', sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation:none !important; transition:none !important;}
+  }
+
+  a{color:var(--gold); text-decoration:none; border-bottom:1px solid transparent;}
+  a:hover{border-bottom-color:var(--gold-line);}
+  a:focus-visible, button:focus-visible{outline:2px solid var(--sage); outline-offset:3px;}
+
+  .wrap{
+    max-width:840px;
+    margin:0 auto;
+    padding:0 28px;
+  }
+
+  /* ---------- Masthead ---------- */
+  header.masthead{
+    border-bottom:3px double var(--rule);
+    padding:64px 0 28px;
+    opacity:0;
+    animation:riseIn .7s ease-out 0.05s forwards;
+  }
+  @keyframes riseIn{
+    from{opacity:0; transform:translateY(10px);}
+    to{opacity:1; transform:translateY(0);}
+  }
+
+  .masthead-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    flex-wrap:wrap;
+    gap:18px;
+  }
+
+  h1.name{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(2.4rem, 6vw, 3.6rem);
+    letter-spacing:-0.01em;
+    margin:0 0 6px;
+    line-height:1.02;
+  }
+
+  .role-line{
+    font-size:1.05rem;
+    color:var(--ink-soft);
+    margin:0;
+    max-width:46ch;
+  }
+
+  .masthead-contact{
+    text-align:right;
+    font-size:0.92rem;
+    color:var(--ink-soft);
+    line-height:1.9;
+  }
+  .masthead-contact a{color:var(--ink);}
+
+  /* Stamp-style resume download button */
+  .stamp-btn{
+    display:inline-block;
+    margin-top:14px;
+    padding:10px 18px;
+    border:1.5px solid var(--ink);
+    outline:1px solid var(--ink);
+    outline-offset:3px;
+    background:transparent;
+    color:var(--ink) !important;
+    font-family:'IBM Plex Sans', sans-serif;
+    font-size:0.82rem;
+    font-weight:600;
+    text-align:center;
+    transform:rotate(-2deg);
+    transition:transform .2s ease, background .2s ease, color .2s ease;
+    cursor:pointer;
+  }
+  .stamp-btn:hover{
+    transform:rotate(0deg);
+    background:var(--ink);
+    color:var(--paper) !important;
+    border-color:var(--ink);
+  }
+  .stamp-btn:hover .stamp-sub{color:var(--paper);}
+  .stamp-sub{
+    display:block;
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-weight:400;
+    font-size:0.75rem;
+    color:var(--gold);
+    margin-top:2px;
+  }
+
+  @media (max-width:640px){
+    .masthead-row{flex-direction:column; align-items:flex-start;}
+    .masthead-contact{text-align:left;}
+  }
+
+  /* ---------- Coursework strip ---------- */
+  .coursework{
+    border-top:1px solid var(--rule);
+    margin-top:36px;
+    padding-top:18px;
+  }
+  .coursework-label{
+    font-size:0.78rem;
+    color:var(--ink-soft);
+    margin:0 0 12px;
+  }
+  .course-tags{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+  }
+  .course-tag{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-size:0.95rem;
+    color:var(--ink);
+    border:1px solid var(--gold-line);
+    padding:6px 14px;
+    border-radius:2px;
+  }
+
+  /* ---------- Section scaffolding ---------- */
+  section{
+    padding:52px 0;
+    border-bottom:1px solid var(--rule);
+  }
+  section:last-of-type{border-bottom:none;}
+
+  .section-head{
+    display:flex;
+    align-items:baseline;
+    gap:14px;
+    margin-bottom:30px;
+  }
+  .section-head h2{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:1.5rem;
+    margin:0;
+    white-space:nowrap;
+  }
+  .section-head .rule{
+    flex:1;
+    height:1px;
+    background:var(--rule);
+  }
+
+  /* ---------- Summary ---------- */
+  .summary p{
+    font-family:'Fraunces', serif;
+    font-weight:400;
+    font-size:1.35rem;
+    line-height:1.5;
+    max-width:62ch;
+    color:var(--ink);
+  }
+
+  /* ---------- Experience ledger ---------- */
+  .entry{
+    display:grid;
+    grid-template-columns:150px 1fr;
+    gap:8px 28px;
+    position:relative;
+    padding:22px 0;
+  }
+  .entry + .entry{border-top:1px solid var(--rule);}
+
+  .entry .when{
+    font-size:0.88rem;
+    color:var(--gold);
+    font-weight:500;
+    padding-top:3px;
+    position:relative;
+  }
+  .entry .when::before{
+    content:"";
+    position:absolute;
+    left:-14px;
+    top:9px;
+    width:6px;
+    height:6px;
+    border-radius:50%;
+    background:var(--gold-line);
+  }
+
+  .entry .role{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:1.18rem;
+    margin:0 0 2px;
+  }
+  .entry .org{
+    font-size:0.95rem;
+    color:var(--ink-soft);
+    margin:0 0 12px;
+  }
+  .entry ul{
+    margin:0;
+    padding-left:18px;
+  }
+  .entry li{
+    margin-bottom:6px;
+    font-size:0.98rem;
+    color:var(--ink);
+  }
+  .entry li:last-child{margin-bottom:0;}
+
+  .entry.featured{
+    background:var(--paper-dim);
+    margin:0 -20px;
+    padding:22px 20px;
+    border-radius:2px;
+    border-top:1px solid var(--rule) !important;
+  }
+  .entry.featured .role::after{
+    content:"";
+  }
+
+  @media (max-width:560px){
+    .entry{grid-template-columns:1fr;}
+    .entry .when{padding-top:0;}
+    .entry .when::before{display:none;}
+  }
+
+  /* ---------- Projects ---------- */
+  .cards{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:24px;
+  }
+  @media (max-width:640px){.cards{grid-template-columns:1fr;}}
+
+  .card{
+    border:1px solid var(--rule);
+    padding:22px;
+  }
+  .card .card-when{
+    font-size:0.82rem;
+    color:var(--sage);
+    font-weight:600;
+    margin-bottom:8px;
+  }
+  .card h3{
+    font-family:'Fraunces', serif;
+    font-size:1.1rem;
+    margin:0 0 10px;
+  }
+  .card ul{margin:0; padding-left:18px;}
+  .card li{font-size:0.94rem; margin-bottom:6px;}
+  .card li:last-child{margin-bottom:0;}
+
+  /* ---------- Activities ---------- */
+  .activity{
+    display:grid;
+    grid-template-columns:220px 1fr;
+    gap:8px 28px;
+    padding:18px 0;
+  }
+  .activity + .activity{border-top:1px solid var(--rule);}
+  .activity .a-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:1.05rem;
+  }
+  .activity .a-sub{
+    font-size:0.85rem;
+    color:var(--ink-soft);
+  }
+  .activity p{margin:0; font-size:0.96rem;}
+  @media (max-width:560px){.activity{grid-template-columns:1fr;}}
+
+  /* ---------- Skills ---------- */
+  .skills-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:24px 40px;
+  }
+  @media (max-width:640px){.skills-grid{grid-template-columns:1fr;}}
+  .skill-group h3{
+    font-size:0.82rem;
+    font-weight:600;
+    color:var(--sage);
+    margin:0 0 10px;
+    border-bottom:1px solid var(--rule);
+    padding-bottom:8px;
+  }
+  .skill-group p{
+    margin:0;
+    font-size:0.95rem;
+    color:var(--ink);
+  }
+
+  /* ---------- Footer ---------- */
+  footer{
+    padding:48px 0 64px;
+    text-align:center;
+  }
+  footer .close-line{
+    font-family:'Fraunces', serif;
+    font-size:1.5rem;
+    margin:0 0 18px;
+  }
+  footer .links{
+    font-size:0.95rem;
+    color:var(--ink-soft);
+  }
+  footer .links a{margin:0 10px;}
+  footer .fine{
+    margin-top:28px;
+    font-size:0.78rem;
+    color:var(--ink-soft);
+    opacity:0.7;
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="masthead">
+    <div class="masthead-row">
+      <div>
+        <h1 class="name">Peehu Mehta</h1>
+        <p class="role-line">Economics student, Purdue University Daniels School of Business — working toward a Summer 2027 internship in business analytics or consulting.</p>
+      </div>
+      <div class="masthead-contact">
+        <div><a href="mailto:peehumehta007@gmail.com">peehumehta007@gmail.com</a></div>
+        <div>425-623-8644</div>
+        <div><a href="https://linkedin.com/in/peehu-mehta" target="_blank" rel="noopener">linkedin.com/in/peehu-mehta</a></div>
+        <a class="stamp-btn" href="Peehu_Mehta_Resume.pdf" download>
+          Download resume
+          <span class="stamp-sub">one page, PDF</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="coursework">
+      <p class="coursework-label">Currently studying</p>
+      <div class="course-tags">
+        <span class="course-tag">Econometrics</span>
+        <span class="course-tag">International Trade</span>
+        <span class="course-tag">Microeconomics</span>
+        <span class="course-tag">Macroeconomics</span>
+        <span class="course-tag">Statistics</span>
+      </div>
+    </div>
+  </header>
+
+  <section class="summary">
+    <div class="section-head"><h2>About</h2><div class="rule"></div></div>
+    <p>I study economics at Purdue's Daniels School of Business, with hands-on experience across social media marketing, data analysis, and youth program leadership. I work comfortably in Excel and Google Sheets, and I'm drawn to roles where numbers and communication meet — from analyzing campaign performance to writing a policy brief for a non-technical reader.</p>
+  </section>
+
+  <section>
+    <div class="section-head"><h2>Experience</h2><div class="rule"></div></div>
+
+    <div class="entry">
+      <div class="when">Jun – Aug 2026</div>
+      <div>
+        <p class="role">Camp Counselor</p>
+        <p class="org">YMCA</p>
+        <ul>
+          <li>Supervised a group of 15+ campers within a 60+ person program, overseeing daily safety, schedules, and transitions.</li>
+          <li>Designed and led weekly science and arts activities, delivering hands-on, age-appropriate lessons.</li>
+          <li>Coordinated with fellow counselors and program staff to plan and adapt activities under a fast-paced schedule.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="when">Nov 2025 – Mar 2026</div>
+      <div>
+        <p class="role">Barista</p>
+        <p class="org">Centennial Cafe, Purdue University</p>
+        <ul>
+          <li>Processed 100+ orders per shift during peak campus hours while maintaining speed and accuracy.</li>
+          <li>Assisted with inventory management and restocking to support smooth daily operations.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="entry featured">
+      <div class="when">Aug – Dec 2025</div>
+      <div>
+        <p class="role">Business Team Member</p>
+        <p class="org">Purdue Electric Racing</p>
+        <ul>
+          <li>Reached out to local and regional businesses by email to request funding and in-kind support for the team's race car build.</li>
+          <li>Researched and compiled scholarship and grant opportunities the team could apply for to help fund the build.</li>
+          <li>Managed the team's social media presence, posting updates on the build and outreach efforts to build visibility.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="when">Summer 2024</div>
+      <div>
+        <p class="role">Marketing Intern</p>
+        <p class="org">Droom Droom — Seattle, WA</p>
+        <ul>
+          <li>Managed day-to-day engagement on the brand's X (Twitter) account, growing visibility within crypto-focused communities.</li>
+          <li>Researched and applied social media strategies, including hashtag selection, posting cadence, and community replies, to increase reach.</li>
+          <li>Analyzed digital marketing performance data to inform content decisions and online community-building efforts.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="when">2021 – 2024</div>
+      <div>
+        <p class="role">Teaching Assistant</p>
+        <p class="org">Stepping Stones — Sammamish, WA</p>
+        <ul>
+          <li>Designed and taught dance lessons for groups of 15+ students, fostering creativity, confidence, and structure.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head"><h2>Projects</h2><div class="rule"></div></div>
+    <div class="cards">
+      <div class="card">
+        <div class="card-when">Spring 2025</div>
+        <h3>Intro Microeconomics Policy Brief: Minimum Wage & Employment</h3>
+        <ul>
+          <li>Modeled short-run and long-run employment effects using supply-demand graphs and elasticity analysis, including deadweight loss visualizations.</li>
+          <li>Wrote a two-page memo for a non-technical audience with an executive summary and actionable policy takeaways.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-when">2025</div>
+        <h3>Personal Budget & Savings Forecast Model</h3>
+        <ul>
+          <li>Built a spreadsheet model with categorized budgeting, conditional formatting, goal tracking, and sensitivity tables for income and expense scenarios.</li>
+          <li>Designed a one-page dashboard with charts to monitor burn rate and progress toward savings goals.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head"><h2>Activities & Leadership</h2><div class="rule"></div></div>
+
+    <div class="activity">
+      <div>
+        <div class="a-title">Varsity Badminton Team</div>
+        <div class="a-sub">2021 – 2025 · Four-year varsity athlete</div>
+      </div>
+      <p>Balanced a demanding training and competition schedule with AP coursework; mentored underclassmen during practices.</p>
+    </div>
+
+    <div class="activity">
+      <div>
+        <div class="a-title">DECA</div>
+        <div class="a-sub">2023 – 2025 · Business case and role-play events</div>
+      </div>
+      <p>Structured recommendations using SWOT and market-sizing frameworks; built concise decks and delivered timed presentations to judges.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head"><h2>Skills</h2><div class="rule"></div></div>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <h3>Analytics & reporting</h3>
+        <p>Excel (PivotTables, XLOOKUP, charts), Google Sheets (formulas, pivot tables)</p>
+      </div>
+      <div class="skill-group">
+        <h3>Marketing & growth</h3>
+        <p>X/Twitter Analytics, social media strategy, content calendar planning, KPI tracking</p>
+      </div>
+      <div class="skill-group">
+        <h3>Design & presentations</h3>
+        <p>Canva (brand kits, decks), PowerPoint</p>
+      </div>
+      <div class="skill-group">
+        <h3>Collaboration</h3>
+        <p>Google Workspace (Docs, Slides, Drive), Microsoft Office</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p class="close-line">Let's talk business.</p>
+    <div class="links">
+      <a href="mailto:peehumehta007@gmail.com">Email</a>·<a href="https://linkedin.com/in/peehu-mehta" target="_blank" rel="noopener">LinkedIn</a>·<a href="Peehu_Mehta_Resume.pdf" download>Resume (PDF)</a>
+    </div>
+    <p class="fine">Peehu Mehta · Purdue University, Daniels School of Business</p>
+  </footer>
+</div>
+
+</body>
+</html>
