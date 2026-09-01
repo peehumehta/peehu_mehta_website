@@ -10,7 +10,6 @@
 <style>
   :root{
     --paper:#FBF9F3;
-    --paper-dim:#F3EFE4;
     --ink:#1E2A32;
     --ink-soft:#4A5760;
     --gold:#A9821F;
@@ -244,17 +243,6 @@
   }
   .entry li:last-child{margin-bottom:0;}
 
-  .entry.featured{
-    background:var(--paper-dim);
-    margin:0 -20px;
-    padding:22px 20px;
-    border-radius:2px;
-    border-top:1px solid var(--rule) !important;
-  }
-  .entry.featured .role::after{
-    content:"";
-  }
-
   @media (max-width:560px){
     .entry{grid-template-columns:1fr;}
     .entry .when{padding-top:0;}
@@ -417,7 +405,7 @@
       </div>
     </div>
 
-    <div class="entry featured">
+    <div class="entry">
       <div class="when">Aug – Dec 2025</div>
       <div>
         <p class="role">Business Team Member</p>
